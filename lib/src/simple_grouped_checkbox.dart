@@ -58,11 +58,6 @@ class SimpleGroupedCheckbox<T> extends StatefulWidget {
   })
       : assert(values != null),
         assert(values.length == itemsTitle.length),
-        assert(multiSelection == false &&
-            preSelection != null &&
-            preSelection.length > 0
-            ? false
-            : true),
         assert(itemsSubTitle != null
             ? itemsSubTitle.length == itemsTitle.length
             : true),
@@ -121,13 +116,13 @@ class SimpleGroupedCheckboxState<T> extends State<SimpleGroupedCheckbox> {
           checked = true;
         }
       }
-      if (widget.multiSelection &&
-          widget.preSelection != null &&
+      if (widget.preSelection != null &&
           widget.preSelection.length > 0) {
         _valueTitle.value = null;
         if (widget.preSelection.contains(widget.values[key])) {
           checked = true;
           _selectionsValue.add(widget.values[key]);
+          _selectedValue.value = widget.values[key];
         }
       }
       Item item = Item(
